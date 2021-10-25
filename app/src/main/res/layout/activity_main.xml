@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+    <TextView
+        android:id="@+id/titleRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/acme"
+        android:gravity="center"
+        android:text="LIST MAHASISWA TI"
+        android:textColor="@color/black"
+        android:padding="20dp"
+        android:textSize="14pt"/>
+
+    <Button
+        android:id="@+id/btnNewList"
+        android:layout_below="@+id/titleRoom"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="new data"
+        android:textColor="@color/white"
+        android:layout_gravity="right"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/btnNewList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp" />
+
+    </LinearLayout>
+</RelativeLayout>
