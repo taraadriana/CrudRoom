@@ -25,6 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
 
+
     private void setDatabaseCreated(){
         mIsDatabaseCreated.postValue(true);
     }

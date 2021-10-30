@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         list.addAll(database.userDao().getAll());
         userAdapter = new UserAdapter(getApplicationContext(), list);
 
+        dialog = new AlertDialog.Builder(this);
+
         userAdapter.setDialog(new UserAdapter.Dialog() {
             @Override
             public void onClick(int position){
@@ -56,16 +58,34 @@ public class MainActivity extends AppCompatActivity {
                                 break;
 
                             case 1:
-                                User user = list.get(position);
-                                database.userDao().delete(user);
+                                dialog.setMessage("do you want to delete this data?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int which) {
+                                                User user = list.get(position);
+                                                database.userDao().delete(user);
+                                                onStart();
+                                               finish();
+                                            }
+                                        })
+                                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                dialogInterface.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = dialog.create();
+                                alertDialog.setTitle("Delete Data");
+                                alertDialog.show();
                                 onStart();
                                 break;
 
                             case 2:
-                                Intent intent1 = new Intent(MainActivity.this,
+                                Intent intent2 = new Intent(MainActivity.this,
                                         showActivity.class);
-                                intent1.putExtra("uid", list.get(position).uid);
-                                startActivity(intent1);
+                                intent2.putExtra("uid", list.get(position).uid);
+                                startActivity(intent2);
                                 break;
                         }
                     }
